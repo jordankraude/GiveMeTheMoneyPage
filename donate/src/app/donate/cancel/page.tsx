@@ -1,23 +1,23 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 export default function CancelPage() {
   const router = useRouter();
 
-  useEffect(() => {
-    // Check if the donation was initiated
-    const donationInitiated = sessionStorage.getItem('donationInitiated');
+  // useEffect(() => {
+  //   // Check if the donation was initiated
+  //   const donationInitiated = sessionStorage.getItem('donationInitiated');
 
-    if (!donationInitiated) {
-      // If not, redirect to the donation page
-      router.push('/donate/donate-third'); // Adjust the path as necessary
-    } else {
-      // Clear the session variable after successful navigation
-      sessionStorage.removeItem('donationInitiated');
-    }
-  }, [router]);
+  //   if (!donationInitiated) {
+  //     // If not, redirect to the donation page
+  //     router.push('/donate/donate-third'); // Adjust the path as necessary
+  //   } else {
+  //     // Clear the session variable after successful navigation
+  //     sessionStorage.removeItem('donationInitiated');
+  //   }
+  // }, [router]);
 
   return (
     <div className='flex flex-col items-center justify-center h-screen bg-red-50'>

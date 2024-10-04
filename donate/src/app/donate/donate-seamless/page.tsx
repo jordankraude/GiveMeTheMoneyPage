@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { useRouter } from 'next/navigation'; // Import useRouter
-import Footer from '@/app/components/Footer';
+// import Footer from '@/app/components/Footer';
 
 const stripePromise = loadStripe('pk_test_51Q3VOtGBc05bKNreyq0OPY6OxBxmP41urK1enKtbfygMABhXtscvcaQxoCGmZ1rJbxOdbQvNS0M2kgO7kmbROtVm00mcNDZFgI'); // Replace with your Stripe publishable key or use an env variable
 
