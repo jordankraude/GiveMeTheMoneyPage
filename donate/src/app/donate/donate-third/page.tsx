@@ -2,14 +2,13 @@
 import { useState } from 'react';
 
 export default function DonationPage() {
-  const [amount, setAmount] = useState(1000); // Default $10 donation
+  const [amount, setAmount] = useState<number>(1000); // Default $10 donation
   const [loading, setLoading] = useState<boolean>(false); // State for loading
 
   const handleDonate = async () => {
-
     setLoading(true);
     const donationAmount = amount;
-  
+
     const response = await fetch('/api/create-checkout-session', {
       method: 'POST',
       headers: {
@@ -17,12 +16,9 @@ export default function DonationPage() {
       },
       body: JSON.stringify({ amount: donationAmount }),
     });
-  
+
     if (response.ok) {
       const { url } = await response.json();
-      
-      // Set session storage variable to indicate a donation was initiated
-
       sessionStorage.setItem('donationInitiated', 'true');
       window.location.href = url; // Redirect to Stripe Checkout URL
     } else {
@@ -31,9 +27,9 @@ export default function DonationPage() {
       setLoading(false);
     }
   };
-  
 
-  const handleChange = (e: any) => {
+  // Change event handler with proper type definition
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
     // Set amount only if value is greater than or equal to 1
     if (value >= 1) {

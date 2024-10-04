@@ -1,16 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
-import { useRouter } from 'next/navigation'; // Import useRouter
-// import Footer from '@/app/components/Footer';
+import { loadStripe, StripeCardElement } from '@stripe/stripe-js';
+import { useRouter } from 'next/navigation';
 
-const stripePromise = loadStripe('pk_test_51Q3VOtGBc05bKNreyq0OPY6OxBxmP41urK1enKtbfygMABhXtscvcaQxoCGmZ1rJbxOdbQvNS0M2kgO7kmbROtVm00mcNDZFgI'); // Replace with your Stripe publishable key or use an env variable
+const stripePromise = loadStripe('pk_test_51Q3VOtGBc05bKNreyq0OPY6OxBxmP41urK1enKtbfygMABhXtscvcaQxoCGmZ1rJbxOdbQvNS0M2kgO7kmbROtVm00mcNDZFgI');
 
 export default function DonatePage() {
-  const router = useRouter(); // Initialize useRouter
-  const [amount, setAmount] = useState(1000); // Default $10 donation
-  const [cardElement, setCardElement] = useState<any>(null);
+  const router = useRouter();
+  const [amount, setAmount] = useState<number>(1000); // Default $10 donation
+  const [cardElement, setCardElement] = useState<StripeCardElement | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -35,7 +34,7 @@ export default function DonatePage() {
     initializeStripe();
   }, []);
 
-  const handleDonate = async (e: React.FormEvent) => {
+  const handleDonate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
@@ -47,7 +46,6 @@ export default function DonatePage() {
       return;
     }
 
-    // Call your backend to create a Payment Intent
     const response = await fetch('/api/create-payment-intent', {
       method: 'POST',
       headers: {
@@ -58,7 +56,7 @@ export default function DonatePage() {
 
     if (!response.ok) {
       const { error: apiError } = await response.json();
-      setError(apiError || 'An unknown error occurred.'); // Handle unknown errors
+      setError(apiError || 'An unknown error occurred.');
       setLoading(false);
       return;
     }
@@ -68,19 +66,16 @@ export default function DonatePage() {
 
     const { error: stripeError } = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
-        card: cardElement,
+        card: cardElement!,
       },
     });
 
     if (stripeError) {
       setError(stripeError.message || 'An unknown error occurred.');
     } else {
-      // Payment succeeded
-      setAmount(1000); // Reset to default value
-      cardElement.clear();
-
-      // Redirect to the success page
-      router.push('/donate/success'); // Change '/success' to your success page route
+      setAmount(1000);
+      cardElement?.clear();
+      router.push('/donate/success');
     }
     setLoading(false);
   };
@@ -94,7 +89,7 @@ export default function DonatePage() {
           <input 
             type="number" 
             value={amount / 100} 
-            onChange={(e) => setAmount(Math.max(Number(e.target.value) * 100, 100))} // Ensure minimum amount is $1
+            onChange={(e) => setAmount(Math.max(Number(e.target.value) * 100, 100))}
             placeholder="Enter donation amount in USD" 
             className='border border-gray-300 p-3 rounded-lg w-full focus:outline-none focus:border-indigo-500 transition'
           />
@@ -110,8 +105,5 @@ export default function DonatePage() {
         </button>
       </form>
     </div>
-    
   );
-  
 }
-
