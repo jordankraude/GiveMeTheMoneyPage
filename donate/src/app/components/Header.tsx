@@ -28,7 +28,7 @@ const Header = () => {
             <nav className={`flex justify-between items-center transition-all duration-300 ${scrolled ? 'w-full mx-8' : 'w-4/5'}`}>
               <div className="text-lg font-bold">
                 <Link href={'/'}>
-                <Image src={'/images/3.png'} alt="logo" width={60} height={60} />
+                <Image src='/images/3.png' alt="logo" width={60} height={60} />
                 </Link>
               </div>
 
