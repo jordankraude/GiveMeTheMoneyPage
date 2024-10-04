@@ -18,7 +18,7 @@ export default function Home() {
         
         <button 
           className="bg-[#3b150b] hover:bg-white text-white hover:text-[#3b150b] font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300"
-          onClick={() => window.location.href = '/about'} // Link to the About page
+          onClick={() => window.location.href = '/purpose'} // Link to the About page
         >
           Learn More
         </button>
