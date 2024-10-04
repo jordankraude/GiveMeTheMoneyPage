@@ -11,7 +11,7 @@ export default function Home() {
       <div className="flex flex-col sm:flex-row sm:space-x-4 mt-6">
         <button 
           className="bg-[#5e17eb] hover:bg-white text-white hover:text-[#5e17eb] font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300 mb-4 sm:mb-0"
-          onClick={() => window.location.href = '/donate'} // Link to the donation page
+          onClick={() => window.location.href = '/donate/donate-third'} // Link to the donation page
         >
           Make a Donation
         </button>
