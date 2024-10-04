@@ -24,7 +24,7 @@ export default function GoalsPage() {
     <div className='flex flex-col items-center justify-center h-screen bg-gray-50 p-4'>
       <h1 className='text-4xl font-bold mb-4 text-[#3b150b]'>Our Donation Goals</h1>
       <p className='text-lg text-gray-600 mb-6'>
-        Help us reach our goal of ${goalAmount / 100}!
+        Help me reach my goal of to afford groceries!
       </p>
       <div className='w-full max-w-md bg-white rounded-lg shadow-lg p-4'>
         <h2 className='text-2xl font-semibold mb-2 text-[#3b150b]'>Current Donations: ${totalDonations / 100}</h2>
