@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Roboto, Open_Sans } from '@next/font/google';
+import { Roboto, Open_Sans } from "next/font/google";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import "./globals.css";
-
-
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -13,17 +13,6 @@ const roboto = Roboto({
 const openSans = Open_Sans({
   weight: ['400', '600'],
   subsets: ['latin'],
-});
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
 });
 
 export const metadata: Metadata = {
@@ -38,11 +27,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${roboto} ${roboto} antialiased`}
-      >
+
+      <body className={`${roboto} ${openSans} antialiased w-full`}>
+      <Header />
         {children}
+      <Footer />
       </body>
+
     </html>
   );
 }

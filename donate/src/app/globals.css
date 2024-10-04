@@ -25,3 +25,38 @@ body {
     text-wrap: balance;
   }
 }
+
+/* nav animation */
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+  bottom: 0; /* Position the underline at the bottom of the text */
+  left: 0;
+  right: 0;
+  height: 2px; /* Height of the underline */
+  background-color: white; /* Color of the underline */
+  transform: scaleX(0); /* Start with the underline scaled down to zero */
+  transition: transform 0.3s ease; /* Smooth transition for the scale */
+}
+
+.group:hover .absolute {
+  transform: scaleX(1); /* Scale to full width on hover */
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-4px);
+  }
+  60% {
+    transform: translateY(-2px);
+  }
+}
+
+.group:hover .absolute {
+  animation: bounce 0.6s ease; /* Apply bounce animation on hover */
+}
