@@ -21,8 +21,8 @@ export async function POST(req: Request) {
       quantity: 1,
     }],
     mode: 'payment',
-    success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/donate/success`,
-    cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/donate/cancel`,
+    success_url: `https://${process.env.NEXT_PUBLIC_BASE_URL}/donate/success`,
+    cancel_url: `https://${process.env.NEXT_PUBLIC_BASE_URL}/donate/cancel`,
   });
 
   // Return the session URL instead of redirecting
